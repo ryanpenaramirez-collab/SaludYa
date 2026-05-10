@@ -1,0 +1,72 @@
+{
+  "entities": {
+    "User": {
+      "title": "Usuario",
+      "description": "Perfil de usuario con rol específico en el sistema.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "displayName": { "type": "string" },
+        "role": { "type": "string", "enum": ["PATIENT", "DOCTOR", "RECEPTIONIST", "ADMIN"] },
+        "specialty": { "type": "string", "description": "Solo para médicos" },
+        "phoneNumber": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "Appointment": {
+      "title": "Cita Médica",
+      "description": "Registro de una cita programada o realizada.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "patientId": { "type": "string" },
+        "doctorId": { "type": "string" },
+        "startTime": { "type": "string", "format": "date-time" },
+        "endTime": { "type": "string", "format": "date-time" },
+        "status": { "type": "string", "enum": ["SCHEDULED", "CONFIRMED", "COMPLETED", "CANCELLED", "NO_SHOW"] },
+        "notes": { "type": "string" },
+        "type": { "type": "string", "description": "General, Especialista, Control" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "patientId", "doctorId", "startTime", "endTime", "status"]
+    },
+    "Schedule": {
+      "title": "Horario Médico",
+      "description": "Configuración de disponibilidad para un médico.",
+      "type": "object",
+      "properties": {
+        "doctorId": { "type": "string" },
+        "dayOfWeek": { "type": "number", "description": "0-6 (Domingo-Sábado)" },
+        "slots": { 
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "start": { "type": "string" },
+              "end": { "type": "string" }
+            }
+          }
+        },
+        "consultationDuration": { "type": "number", "default": 20 }
+      },
+      "required": ["doctorId", "dayOfWeek", "slots"]
+    }
+  },
+  "firestore": {
+    "users": {
+      "schema": "User",
+      "description": "Perfiles de pacientes, médicos y staff."
+    },
+    "appointments": {
+      "schema": "Appointment",
+      "description": "Todas las citas agendadas en el sistema."
+    },
+    "schedules": {
+      "schema": "Schedule",
+      "description": "Configuración de horarios de atención de médicos."
+    }
+  }
+}
