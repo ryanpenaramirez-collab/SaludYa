@@ -2,14 +2,6 @@
 
 <div align="center">
 
-![Estado](https://img.shields.io/badge/Estado-En%20Desarrollo-blue?style=for-the-badge)
-![Licencia](https://img.shields.io/badge/Licencia-MIT-green?style=for-the-badge)
-![Universidad](https://img.shields.io/badge/UTP-Técnicas%20de%20Modelado-orange?style=for-the-badge)
-
-**Plataforma digital para modernizar la gestión de citas médicas en IPS y consultorios independientes de Colombia.**
-
-[Ver Demo](#) · [Reportar Bug](../../issues) · [Solicitar Feature](../../issues)
-
 </div>
 
 ---
